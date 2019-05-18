@@ -1,0 +1,70 @@
+1. A line of people at an amusement park ride.
+    -The line is composed of members, represented as strings.
+    -There is a front to the line, as well as a back.
+    -When someone enters the line, place them at the end.
+    -People may leave the line whenever they see fit, and those behind them take their place.
+
+Given the above real-world information, use an array data structure to code the following solution.
+
+a) Use an array input: ["Vivian", "Ava", "Josh", "Patrick", "Mike"]
+
+var parkLine = ["Vivian", "Ava", "Josh", "Patrick", "Mike"]
+
+b) Insert a new person, "Mary" at the end of the line. In other words, you should insert Mary after Mike.
+
+function newPerson(name){
+      parkLine.push(name)};
+
+newPerson("Mary"); 
+
+c) Find a person in line named "Josh." This function should return the position of 2 in the array, (recall that arrays are 0-based).
+
+function findPerson(name){
+  return parkLine.indexOf(name);
+}
+console.log(findPerson('Josh')); 
+
+d) Find a person in line named "Emily." What should your function return if it does not find the item in the array?
+
+function findPerson(name){
+  var index = parkLine.indexOf(name);
+  if(index == -1) {
+	return 'Name not found'
+       }
+  else{
+        return parkLine.indexOf(name);
+      }
+}
+console.log(findPerson('Emily')); 
+
+e) What if Ava wants to allow a friend, "Melissa", to cut in line in front of her? How would you code this so Melissa appears before Ava?
+
+function cutLine(friendName, cutterName){
+  let index = parkLine.indexOf(friendName);
+  parkLine.splice(index, 0, cutterName);
+  return parkLine;
+}
+
+console.log(cutLine('Ava', 'Melissa'));
+
+f) If Patrick wants to leave the line, how would you delete him from the array?
+
+function deletePerson(name){
+  let index = parkLine.indexOf(name);
+    
+      parkLine.splice(index, 1);
+    
+}
+
+deletePerson('Patrick')
+
+
+
+2. Provide another real-world example that you can model using a data structure.
+The books in a library. The room would be the big array, the shelves items in the big array. Then the shelves could also be an array, and the books would be items within the array. If I am not mistaken, this would be called a 3D array in C/ C++.
+
+3. How would your data structure allow developers to access and manipulate the data?
+
+Based on what they want to access or manipulate, the dev could do a lot of things be it to the shelves or books themselves. For example: The dev could add new books by an author right next to the authors other books. 
+
+
