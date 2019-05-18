@@ -12,27 +12,39 @@ Write the following algorithms in pseudocode:
 
 Create a function that takes two numbers and prints out the greater number.
 
-INPUT 2 numbers
-Compare first number and second number
-Print out  bigger number
+INPUT first number
+INPUT second number
+IF first number is less than second number
+PRINT second number
+END IF
+ELSE PRINT first number
+END ELSE
 
 
 
 Create a function that prints out the numbers from 1 to 100.
 
 CREATE variable counter
-WHILE counter is LESS THAN 100 the function PRINTS out value of counter
+WHILE counter is LESS THAN 100 
+PRINT counter
+ADD Counter Iteration
+END WHILE
 
 
 Create a function that searches for a specific entry in a phonebook.
+INPUT entry
+SET variable ent to INPUT
+FOR LOOP iterate through phonebook
 
-Set variable ent to specific entry
-Use FOR LOOP to iterate through phonebook
-While iterating, compare values of phonebook to ent
+Compare phonebook to ent
 IF ent matches phonebook value
 RETURN true
+END IF
 ELSE
 RETURN false 
+END ELSE
+
+END FOR LOOP
 
 
 Using the pseudocode you wrote for the previous question, implement it in any computer language of your choice.
