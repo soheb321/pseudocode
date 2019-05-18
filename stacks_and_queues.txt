@@ -1,0 +1,73 @@
+1.What is the main difference between a stack and a queue?
+Stack uses LIFO while queue uses FIFO
+
+
+2.What are the similarities between stacks and queues?
+Allow for an order of operations, that let an engineer to store data.
+
+
+3.Imagine you are an engineer tasked with implementing the UNDO and REDO options in a word processor such as Microsoft Word. Which data structure would you use for each option and why?
+LIFO for UNDO because you want to remove the last added data.
+LIFO for REDO because you want to re-add the last deleted data.
+
+
+
+Programming Questions
+You may program the following question in any language of your choice. Before you begin coding, write out a plan as to how you will solve the question.
+
+4. Given a string, reverse it using a stack. For example, the string "Bloc!" should be converted to "!colB".
+function reverseString(data){
+  
+  let stack = [];
+  let reverse = '';
+
+  for (var i = 0; i <= data.length; i++)
+    stack.push(data[i]);
+  
+
+  for (let i = stack.length-1; i >= 0; i--)
+    reverse += stack[i];
+  return reverse;
+
+}
+
+
+
+5. Implement the pop method of a stack using one queue. Make a FIFO data structure mirror the functionality of a LIFO data structure. Since the internal list is not the same as defined in the checkpoint, it may help to rewrite the pseudocode first.
+
+function popMethod(data) {
+   let list = [];
+   for (let i = 0; i < data.length-1; i++){
+    list.push(data[i]);}
+
+   let deleted = data[data.length-1];
+   return deleted;
+}
+ 
+
+
+
+
+6.  Implement the enqueue and dequeue methods defined in the checkpoint inside your own Queue class.
+
+Class Queue{
+constructor{
+this.sample = []
+}
+
+ function enQue(data){
+
+   this.sample.push(data);
+
+   }
+
+ function deQue(data){
+   return this.sample.shift();
+
+   }
+
+}
+
+
+
+
