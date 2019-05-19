@@ -27,13 +27,13 @@ END FUNCTION
 
 No because the naming is pretty ambiguous and looks extremely cluttered with no nesting. 
 
-FUNCTION convertDegree(x,y)
+FUNCTION convertDegree(input,scale)
 
-  IF y = "F" THEN 
-  	SET converted to (x-32) * (5/9) degrees //Fahrenheit to Celsius
+  IF scale = "F" THEN 
+  	SET converted to (input-32) * (5/9) degrees //Fahrenheit to Celsius
 
-  ELSE IF y = "C" THEN 
-  	SET converted to x * 1.8000 + 32.00 degrees //Celsius to Fahrenheit
+  ELSE IF scale = "C" THEN 
+  	SET converted to input * 1.8000 + 32.00 degrees //Celsius to Fahrenheit
   END IF
 
   PRINT converted
@@ -79,15 +79,13 @@ END FUNCTION
 
 
 FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
-   PRINT "Your total due is: " + subTotal * discountRate + (subTotal * tax)
-
-FUNCTION getPaymentType (paymentType)
+    let totalDue = subTotal * discountRate + (subTotal * tax)
    IF paymentType = 'CASH' THEN
        CALL getPayment RETURNING amount
-       PRINT "Change due: " + amount - subTotal * discountRate + (subTotal * tax)
+       PRINT "Change due: " + amount - totalDue
    ELSE IF paymentType = 'CREDIT CARD' THEN
        CALL getPayment RETURNING amount
-       PRINT "Your credit card has been charged: " + subTotal * discountRate + (subTotal * tax)
+       PRINT "Your credit card has been charged: " + totalDue
    END IF
 END FUNCTION
 
@@ -187,8 +185,9 @@ CLASS BankAccount
 
  FUNCTION creditCardOffer()
   IF (customer.hasCreditCard) THEN
-  PRINT displayBalance
-     IF NOT(customer.hasCreditCard) THEN
+  	PRINT displayBalance
+
+  ELSE(customer.hasCreditCard) THEN
          CALL offerCreditCard
      END
  END FUNCTION
@@ -196,7 +195,7 @@ CLASS BankAccount
  FUNCTION checkStatus
      IF(customer.hasCheckingAccount) THEN
      PRINT displayBalance
-     IF NOT(customer.hasCheckingAccount) THEN
+     ELSE(customer.hasCheckingAccount) THEN
          CALL offerCheckingAccount
      END
  END FUNCTION
@@ -218,11 +217,11 @@ Example:
 [10,1,4,6,1,1,2] returns 5 because the square root of 25 is 5.
 [1,1] returns 2 because 2 is not a perfect square.
 The square root of 2 is approximately 1.414213562373095.
-var arrays = [10, 1, 4, 6, 1, 1, 2];
 
+var arrays = [10, 1, 4, 6, 1, 1, 2];
 function squareFind(array) {
   var total = 0;
-  for (let i = 0; i <= array.length; i++)   {
+  for (let i = 0; i < array.length; i++)   {
     total += array[i];
   }
 
@@ -243,14 +242,16 @@ console.log(squareFind(arrays));
 
 7. Duplicate Given an array of integers, find out whether the array contains any duplicate elements. The function should return true if any value appears at least twice in the array, and false if every element is distinct.
 
+var arrays = [2,3,5,7,6,4,3,2]
 function isdupe(array){
   var tempArr = array
-  arr.sort(tempArr);
+  tempArr.sort();
   for(let i =0; i<= array.length; i++){
-     if(tempArr[i] === tempArr[i] + 1){
+     if(tempArr[i] === tempArr[i+1]){
          return true;
         }
      else return false;
         }
+  
 }
-
+console.log(isdupe(arrays));
