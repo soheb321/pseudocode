@@ -16,12 +16,14 @@ Programming Questions
 You may program the following question in any language of your choice. Before you begin coding, write out a plan as to how you will solve the question.
 
 4. Given a string, reverse it using a stack. For example, the string "Bloc!" should be converted to "!colB".
+
+var tester = "Soheb";
 function reverseString(data){
   
-  let stack = [];
-  let reverse = '';
+  let stack = [ ];
+  var reverse = '';
 
-  for (var i = 0; i <= data.length; i++)
+  for (var i = 0; i < data.length; i++)
     stack.push(data[i]);
   
 
@@ -30,6 +32,8 @@ function reverseString(data){
   return reverse;
 
 }
+console.log(reverseString(tester));
+            
 
 
 
