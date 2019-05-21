@@ -127,17 +127,15 @@ function linked(){
   this.head = null;
 }
 
-linked.prototype.push =function(data){
-var node = {
-value: data,
-next: null
-}
-
-if(!this.head){
+linked.prototype.push = function(val){
+    var node = {
+       value: val,
+       next: null
+    }
+    if(!this.head){
       this.head = node;      
     }
-
-else{
+    else{
       current = this.head;
       while(current.next){
         current = current.next;
@@ -146,9 +144,12 @@ else{
     }
   }
 
-linked.protype.reverse = function ( data){ 
+function reverseList(orig){
+  
+ 
   var nodes=[], 
-    current = data.head;
+    current = orig.head;
+  //storing all the nodes in an array
   while(current){
     nodes.push(current);
     current = current.next;
@@ -170,20 +171,12 @@ linked.protype.reverse = function ( data){
   return reverse;
 }
 
-var test = new linked();
-test.push("a");
-test.push("a");
-test.push("a");
-test.push("a");
-test.push("b");
-test.push("b");
-test.push("b");
+var list = new linked();
+list.push('5');
+list.push('4');
+list.push('3');
+list.push('2');
+list.push('1');
 
 
-test.reverse(test);
-console.log(test);
-
-
-
-
-
+console.log(reverseList(list));
