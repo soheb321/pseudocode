@@ -1,0 +1,80 @@
+1.What is a hash table?
+Type of structure that stores values by linking it to a unique key. 
+
+2.What is hashing?
+The process of converting strings to an integer. 
+
+3. How does a hash table store data?
+Take the Key.
+-Convert the Key to a Hash Code using a Hashing Function.
+-Mod the Hash Code to get an Array Index.
+-Store the Value in the Array Index.
+
+4.How are hash tables and objects different?
+Hash tables are like arrays in which you store similar data collections. 
+Hash objects hold different types of data together. 
+
+
+Determine whether you would use a hash table or an object to store each of the following pieces of data:
+A list of pets and their unique names. - TABLE
+The name, age, and the birthday of your best friend. - OBJECT
+The name and location of every company in a given city. TABLE
+All of the books checked out from a library by a particular individual. - TABLE
+The primary and secondary phone numbers for a contact. - OBJECT
+
+
+
+Programming Questions
+Create a hash table that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers.
+
+class lookUpCust{
+  constructor(name, number, address) {
+    this.name = name;
+    this.number = number;
+    this.address = address;
+    this.list = [] 
+  }
+  set(name, number, address) {
+    this.list[number] = [name, number, address];
+  }
+  get(number) {
+    return this.list[number]
+  }
+}
+Create a hash table that allows a store owner to track their store's inventory and quantity.
+class trackInventory {
+  constructor(id, name, inventory) {
+    this.name = name;
+    this.inventory = inventory;
+    this.id = id;
+    this.list = [] 
+  }
+  set(id, name, inventory) {
+    this.list[id] = [id, name, inventory];
+  }
+  get(id) {
+    return this.list[id]
+  }
+}
+Create a hash table that allows digital copies of newspapers to be entered and searched by publisher and publication date.
+
+class Newspaper{
+    constructor(publisher, pDate) {
+      this.publisher = publisher;
+      this.pDate = pDate;
+      this.list = []
+    }
+    set(publisher, pDate) {
+      this.list[pDate] = [publisher, pDate];
+      this.list[publisher] = [publisher, pDate]
+    }
+    get(publisherOrDate) {
+      return this.list[publisherOrDate]
+    }
+  }
+
+
+
+
+
+
