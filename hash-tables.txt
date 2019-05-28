@@ -27,51 +27,144 @@ The primary and secondary phone numbers for a contact. - OBJECT
 Programming Questions
 Create a hash table that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers.
 
-class lookUpCust{
-  constructor(name, number, address) {
-    this.name = name;
-    this.number = number;
-    this.address = address;
-    this.list = [] 
+function hash(key, size) {
+  var hash = 0;
+  for(var i = 0; i < key.length; i++){
+    hash += key.charCodeAt(i);
   }
-  set(name, number, address) {
-    this.list[number] = [name, number, address];
-  }
-  get(number) {
-    return this.list[number]
-  }
+  return hash % size;  
+};
+
+function custLookUp (){
+  var list = [];
+  var cap = 321;
+  
+  this.set = function(number, name, address){
+    var index = hash(number, cap);
+
+    if (list[index] === undefined) {
+      list[index] = [ [number, name, address] ];
+    }
+};
+  
+  this.get = function(number){
+    var index = hash(number, cap);
+
+    if(list[index] === undefined){
+      return "The list of customers is empty";
+    } else {
+      for(var i = 0; i < list[index].length; i++) {
+        if(list[index][i][0] === number) {
+          return list[index][i][0] + ", " + list[index][i][1] + ", " + list[index][i][2];
+        } else {
+          return "Customer does not exist";
+        }
+      }
+    }
+  };
 }
+
 Create a hash table that allows a store owner to track their store's inventory and quantity.
-class trackInventory {
-  constructor(id, name, inventory) {
-    this.name = name;
-    this.inventory = inventory;
-    this.id = id;
-    this.list = [] 
-  }
-  set(id, name, inventory) {
-    this.list[id] = [id, name, inventory];
-  }
-  get(id) {
-    return this.list[id]
-  }
+
+function hash(key, size){
+	var hash = 0;
+	for(var i = 0; i < key.length; i++){
+		hash += key.charCodeAt(i);
+	}
+
+	return hash % size;
+}
+
+function trackInventory(){
+	var list = [];
+  var cap = 444;
+
+	this.set = function(name, quantity){
+		var index = hash(name, cap);
+
+		if(list[index] === undefined){
+			list[index] = [ [name, quantity] ];
+		}
+	};
+
+	this.get = function(name){
+		var index = hash(name, cap);
+
+		if(list[index] === undefined){
+    		return "Not found";
+  	} else {
+    		for(var i = 0; i < list[index].length; i++) {
+      		if(list[index][i][0] === name) {
+        			return  list[index][i][0] + " - " + list[index][i][1] ;
+      		} else {
+    				return "Not found";
+      		}
+    		}
+    } 
+
+  };
+}
+
 }
 Create a hash table that allows digital copies of newspapers to be entered and searched by publisher and publication date.
+ 
+function hash(key, size){
+var hash = 0;
+for(var i = 0; i< key.length;i++){
+  hash+= key.charCodeAt(i);
+}
+return hash % size;
+}
 
-class Newspaper{
-    constructor(publisher, pDate) {
-      this.publisher = publisher;
-      this.pDate = pDate;
-      this.list = []
+function publisherTable(){
+  var list = [];
+  var cap = 932;
+  this.set= function(publisher,pubdate, article){
+    var index = hash(publisher, cap)
+    if(list[index] === undefined){
+      list[index] = [[publisher, pubdate, article]];
     }
-    set(publisher, pDate) {
-      this.list[pDate] = [publisher, pDate];
-      this.list[publisher] = [publisher, pDate]
+
+  }
+  this.get = function(publisher){
+    var index = hash(publisher, cap)
+    if(list[index]=== undefined){
+      return "Not found";
     }
-    get(publisherOrDate) {
-      return this.list[publisherOrDate]
+    else{
+      for(var i = 0; i <list[index].length;i++){
+        if(list[index][i][0]=== publisher){
+          return list[index][i][0] + " - "+ list[index][i][1]+ " - " + list[index][i][2]
+         }
+        }
+      }
     }
   }
+  function dateTable(){
+    var list = [];
+    var cap = 932;
+    this.set= function(publisher,pubdate, article){
+      var index = hash(publisher, cap)
+      if(list[index] === undefined){
+        list[index] = [[publisher, pubdate, article]];
+      }
+  
+    }
+    this.get = function(pubdate){
+      var index = hash(pubdate, cap)
+      if(list[index]=== undefined){
+        return "Not found";
+      }
+      else{
+        for(var i = 0; i <list[index].length;i++){
+          if(list[index][i][1]=== pubdate){
+            return list[index][i][0] + " - "+ list[index][i][1]+ " - " + list[index][i][2]
+           }
+          }
+        }
+      }
+    }
+  
 
 
 
