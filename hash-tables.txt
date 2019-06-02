@@ -116,17 +116,23 @@ for(var i = 0; i< key.length;i++){
 return hash % size;
 }
 
-function publisherTable(){
+
+
+function HashTable(){
   var list = [];
-  var cap = 932;
-  this.set= function(publisher,pubdate, article){
+  var cap = 9322;
+  this.setPub= function(publisher,pubdate){
     var index = hash(publisher, cap)
     if(list[index] === undefined){
-      list[index] = [[publisher, pubdate, article]];
+      list[index] = [[publisher, pubdate]];   
     }
-
   }
-  this.get = function(publisher){
+  this.setDate= function(publisher,pubdate){
+    var index = hash(pubdate, cap)
+    if(list[index] === undefined){
+      list[index] = [[publisher, pubdate]];   
+  
+  this.getPub = function(publisher) {
     var index = hash(publisher, cap)
     if(list[index]=== undefined){
       return "Not found";
@@ -134,36 +140,28 @@ function publisherTable(){
     else{
       for(var i = 0; i <list[index].length;i++){
         if(list[index][i][0]=== publisher){
-          return list[index][i][0] + " - "+ list[index][i][1]+ " - " + list[index][i][2]
+          return list[index][i][0] + " - "+ list[index][i][1]
          }
         }
       }
-    }
-  }
-  function dateTable(){
-    var list = [];
-    var cap = 932;
-    this.set= function(publisher,pubdate, article){
-      var index = hash(publisher, cap)
-      if(list[index] === undefined){
-        list[index] = [[publisher, pubdate, article]];
-      }
-  
-    }
-    this.get = function(pubdate){
-      var index = hash(pubdate, cap)
+    this.getDate = function(pubdate){
+      
+      var index= hash(pubdate, cap)
       if(list[index]=== undefined){
         return "Not found";
       }
       else{
         for(var i = 0; i <list[index].length;i++){
-          if(list[index][i][1]=== pubdate){
-            return list[index][i][0] + " - "+ list[index][i][1]+ " - " + list[index][i][2]
+          if(list[index][i][1] === pubdate){
+            return list[index][i][0] + " - "+ list[index][i][1]
            }
           }
         }
-      }
     }
+  }
+  
+    }
+
   
 
 
