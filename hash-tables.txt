@@ -108,59 +108,49 @@ function trackInventory(){
 }
 Create a hash table that allows digital copies of newspapers to be entered and searched by publisher and publication date.
  
-function hash(key, size){
-var hash = 0;
-for(var i = 0; i< key.length;i++){
-  hash+= key.charCodeAt(i);
-}
-return hash % size;
-}
-
-
-
-function HashTable(){
-  var list = [];
-  var cap = 9322;
-  this.setPub= function(publisher,pubdate){
-    var index = hash(publisher, cap)
-    if(list[index] === undefined){
-      list[index] = [[publisher, pubdate]];   
-    }
+let hash = (key, cap)=> {
+  var hash = 0;
+  for(var i=0; i< key.length;i++){
+    hash+= key.charCodeAt(i);
   }
-  this.setDate= function(publisher,pubdate){
-    var index = hash(pubdate, cap)
-    if(list[index] === undefined){
-      list[index] = [[publisher, pubdate]];   
-  
-  this.getPub = function(publisher) {
-    var index = hash(publisher, cap)
-    if(list[index]=== undefined){
-      return "Not found";
-    }
-    else{
-      for(var i = 0; i <list[index].length;i++){
-        if(list[index][i][0]=== publisher){
-          return list[index][i][0] + " - "+ list[index][i][1]
-         }
-        }
-      }
-    this.getDate = function(pubdate){
-      
-      var index= hash(pubdate, cap)
-      if(list[index]=== undefined){
-        return "Not found";
-      }
-      else{
-        for(var i = 0; i <list[index].length;i++){
-          if(list[index][i][1] === pubdate){
-            return list[index][i][0] + " - "+ list[index][i][1]
-           }
-          }
-        }
-    }
+  return hash % cap;
+}
+
+class hashTable {
+  constructor() {
+    this.storage = [];
+    this.cap = 60;
   }
-  
+
+  add(publisher, pubDate) {
+    let adder = publisher + pubDate;
+    let index = hash(adder, this.cap);
+    let data = [publisher, pubDate];
+      if (this.storage[index] === undefined) {
+        this.storage[index] = [ ];
+    } 
+    this.storage[index].push(data);
     }
+
+  search(publisher, pubDate) {
+    let adder = publisher + pubDate;
+    let index = hash(adder, this.cap);
+    let result = [];
+    
+    if (!this.storage[index]) { return 'No results were found for this search' }
+      this.storage[index].forEach(entry => {
+       if (entry[0] === publisher && entry[1] === pubDate) { 
+        result.push(entry); 
+      }
+    })
+    return result;
+  }
+}
+
+
+let test = new hashTable();
+test.add('Ny Times', '2019');
+console.log(test.search('Ny Times', '2019'));
 
   
 
