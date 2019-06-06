@@ -19,9 +19,7 @@ BFS - searches row by row
 
 
 Explain in your own words what an undirected, a-cyclic, unweighted graph is.
-Unweighted graph - connects nodes without adding any importance or order and not necessarily ending in a loop. 
-A-cyclic is a closed loop. 
-undirected - is like a two way road. 
+Neither of these have a start or end. They can also go in any direction. 
 
 What kind of graph is a binary search tree?
 
@@ -171,11 +169,11 @@ class Tree {
     let thisNode = this.root;
     let nodeCount = 0;
     while (thisNode) {
-      thisNode = data < thisNode.data ? thisNode.left : thisNode.right;
-      nodeCount++;
       if (data === thisNode.data) {
         return nodeCount;
       }
+      thisNode = data < thisNode.data ? thisNode.left : thisNode.right;
+      nodeCount++;
     }
   }
   distanceBetweenNodes(root, num1, num2) {
@@ -202,7 +200,6 @@ test.add(9);
 
 var root = test.getRoot();
 console.log(test.distanceBetweenNodes(root, 7, 9));
-
 
 
 
