@@ -1,0 +1,209 @@
+What is a binary tree and what makes it unique to other trees?
+
+Trees are non-linear data structures. And can have more than two children. Binary can only have two and each is referred to as left or right child.
+
+What is a heuristic?
+
+The ability to solve for an approximate when you can't find a exact solution.
+
+
+What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+Finding stock market trends
+
+
+What is the difference between a depth-first search and a breadth-first search?
+
+DFS - searches to the leaf from root before backtracking
+BFS - searches row by row
+
+
+Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+Unweighted graph - connects nodes without adding any importance or order and not necessarily ending in a loop. 
+A-cyclic is a closed loop. 
+undirected - is like a two way road. 
+
+What kind of graph is a binary search tree?
+
+ a-cyclic, directed, unweighted
+
+
+1. Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+
+Example: The value 10 exists in the tree. The value 23 does not exist in the tree.
+
+class Node {
+  constructor(data, left = null, right = null) {
+    this.data = data;
+    this.left = left;
+    this.right = right;
+  }
+}
+
+class Tree {
+  constructor() {
+    this.root = null;
+  }
+  add(data) {
+    const node = this.root;
+    if (node === null) {
+      this.root = new Node(data);
+      return;
+    } 
+	else {
+      function search (node) {
+        if (data < node.data) {
+          if (node.left === null) {
+            node.left = new Node(data);
+            return;
+          } else if (node.left !== null) {
+            return search(node.left);
+          }
+        } else if (data > node.data) {
+          if (node.right === null) {
+            node.right = new Node(data);
+            return;
+          } else if (node.right !== null) {
+            return search(node.right);
+          }
+        } 
+	else {
+          return null;
+        }
+      };
+      return search(node);
+    }
+  }
+  
+  find(data) {
+    let current = this.root;
+    while (current) {
+      if (data === current.data) {
+        return true;
+      }
+      if (data < current.data) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
+    return false;
+  }
+  
+}
+
+const tree = new Tree();
+
+tree.add(1);
+tree.add(123);
+tree.add(73);
+tree.add(44);
+
+console.log(tree.find(9));
+console.log(tree.find(46));
+console.log(tree.find(44));
+
+
+2. Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+
+Example: The distance between the nodes 4 and 10 is 4. The distance between the nodes 8 and 10 is 1. The distance between the nodes 1 and 14 is 4.
+
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class Tree {
+  constructor() {
+    this.root = null;
+  }
+  getRoot() {
+    return this.root;
+  }
+  add(data) {
+    const node = this.root;
+    if (node === null) {
+      this.root = new Node(data);
+      return;
+    } else {
+      const search = function(node) {
+        if (data < node.data) {
+          if (node.left === null) {
+            node.left = new Node(data);
+            return;
+          } else if (node.left !== null) {
+            return search(node.left);
+          }
+        } else if (data > node.data) {
+          if (node.right === null) {
+            node.right = new Node(data);
+            return;
+          } else if (node.right !== null) {
+            return search(node.right);
+          }
+        } else {
+          return null;
+        }
+      };
+      return search(node);
+    }
+  }
+  
+
+  findCommon(root, num1, num2) {
+    if (!root) return;
+    var lowestCommon = root.data;
+    if (num1 === lowestCommon || num2 === lowestCommon) {
+      return lowestCommon;
+    }
+    if (num1 < lowestCommon && num2 < lowestCommon) {
+      return this.findCommon(root.left, num1, num2);
+    }
+    if (num1 > lowestCommon && num2 > lowestCommon) {
+      return this.findCommon(root.right, num1, num2);
+    }
+    return lowestCommon;
+  }
+  countAncestors(root, data) {
+    let thisNode = this.root;
+    let nodeCount = 0;
+    while (thisNode) {
+      thisNode = data < thisNode.data ? thisNode.left : thisNode.right;
+      nodeCount++;
+      if (data === thisNode.data) {
+        return nodeCount;
+      }
+    }
+  }
+  distanceBetweenNodes(root, num1, num2) {
+    var lowestCommon = this.findCommon(root, num1, num2);
+    var nodeOneToRoot = this.countAncestors(lowestCommon, num1);
+    var nodeTwoToRoot = this.countAncestors(lowestCommon, num2);
+    var rootToAncestor = this.countAncestors(root,lowestCommon);
+
+    var totalDistance = (nodeOneToRoot + nodeTwoToRoot) - (2 * rootToAncestor);
+    return (totalDistance);
+  }
+
+  
+}
+
+var test = new Tree();
+
+test.add(4);
+test.add(7);
+test.add(8);
+test.add(3);
+test.add(2);
+test.add(9);
+
+var root = test.getRoot();
+console.log(test.distanceBetweenNodes(root, 7, 9));
+
+
+
+
+
