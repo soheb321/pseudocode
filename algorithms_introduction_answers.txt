@@ -1,0 +1,55 @@
+Using proper pseudo-code, describe the following primitive algorithms:
+
+Making coffee;
+FUNCTION makeCoffee
+
+SET kettle to true
+
+SET tableSpoons to 2
+
+WHILE coffee <=  tableSpoons
+coffee += 1
+
+IF coffee == tableSpoons 
+SET addWater to TRUE
+
+
+IF coffee = 2 && addWater = true
+CALL pour
+SET kettle to FALSE
+
+END FUNCTION
+
+Washing dishes;
+
+FUNCTION washDishes(dirtyDishes)
+WHILE dirtyDishes!= 0
+CALL addSoap
+CALL handWashDish
+dirtyDishes --
+
+END FUNCTION
+
+A choice of your own.
+FUNCTION midnightSnack
+
+WHILE hasSnack = FALSE
+  Call goToStore
+  Call buySnack
+SET hasSnack to TRUE
+
+IF hasSnack = TRUE
+CALL eatSnack
+
+END FUNCTION
+
+
+As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
+
+1. Spotify and the way they share potential music with clients causing them to stand out and keep clients longer.
+2. Amazon and the way they upsell and bundle products to increase revenues and keep customers coming back
+3.Facebook and they way they manage to get relevant content to keep users engaged allowing them to serve more ads.
+
+Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
+
+Efficient algorithm has been as simplified as possible with clean easy to follow logic, while inefficient ones are clunky, complex, and don't work for all circumstances.
