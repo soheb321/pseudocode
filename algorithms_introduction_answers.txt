@@ -3,20 +3,26 @@ Using proper pseudo-code, describe the following primitive algorithms:
 Making coffee;
 FUNCTION makeCoffee
 
-SET kettle to true
-
+SET coffeeMaker to TRUE
+SET water to 2
 SET tableSpoons to 2
+SET coffee to 0
+SET coffeeDone to FALSE 
 
-WHILE coffee <=  tableSpoons
-coffee += 1
+IF coffeeMaker = TRUE AND water = 2 AND tableSpoons = 2
+call addWater
+call addCoffee
+call turnOn
+SET coffeeDone to TRUE 
+END IF
 
-IF coffee == tableSpoons 
-SET addWater to TRUE
+IF coffeeDone = true
+Call pourCoffee
 
+ADD 1 to coffee
+END IF
 
-IF coffee = 2 && addWater = true
-CALL pour
-SET kettle to FALSE
+Return coffee
 
 END FUNCTION
 
@@ -27,16 +33,17 @@ WHILE dirtyDishes!= 0
 CALL addSoap
 CALL handWashDish
 dirtyDishes --
-
+END WHILE
 END FUNCTION
 
 A choice of your own.
 FUNCTION midnightSnack
 
-WHILE hasSnack = FALSE
+IF hasSnack = FALSE
   Call goToStore
   Call buySnack
 SET hasSnack to TRUE
+END IF
 
 IF hasSnack = TRUE
 CALL eatSnack
