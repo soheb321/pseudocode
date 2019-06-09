@@ -1,0 +1,65 @@
+1Define and compare recursion and iteration.
+Recursion - A function that calls itself until it reaches a certain limitation
+Iteration - A problem solved using loops
+
+Iteration can be harder to implement but runs much faster than Recursion and is also less subject to system limitations.
+
+
+
+2.Name five algorithms that are commonly implemented by recursion.
+1. Binary search
+2. Sorting algorithm 
+3. A merging algorithm
+4. Fibboaci 
+5. Factorial algorithm
+
+
+
+3.When should you use recursion, and when should you avoid recursion? Give examples for each.
+You should use recursion when the end is reasonable such as sorting a list of  100 numnbers, but should be avoided when you have a rather extensive task to do that would take up a lot of time. For example calculating the factorial of 10000!
+
+
+4 Compare the recursive and iterative solutions to the three algorithms from the checkpoint (factorial, maximum, and fibonacci). What is similar, and what is different?
+They all return data after a requirement has been fulfilled. All 3 when written as Iterative are shorter in terms of code and run faster. The iterative for fibonnaci is much similar to the recursive, unlike the factorial where the recursive is clunky and the iterative is clean.
+
+5. Given a multi-dimensional collection (such as an array) where the number of dimensions is unknown, write a recursive algorithm to count the number of items in the entire collection.
+const countArray = (array) => {
+let counter = 0; 
+for (let i = 0; i < array.length; i++){
+if(Array.isArray(array[i])){
+counter += countArray(array[i])
+
+}
+else {
+counter++
+}
+} 
+return counter
+
+}
+let arr = ["a","b",2,3,4,5,6,7,8]
+console.log(countArray(arr));
+
+6 A palindrome is a word or phrase whose spelling is the same either direction (e.g., racecar). Write a recursive algorithm to determine if a given word or phrase is a palindrome.
+Google Easter Egg: Google the term "recursion". Google will prompt you with "Did you mean: recursion". Explain why this behavior exhibits properties of recursion.
+
+const isPalindrome = (word) => {
+  let holder = word.toLowerCase();
+  if (holder.length === 1) {
+      return true
+    } 
+  else if(holder[0] === holder[holder.length - 1]){
+  let palin = holder.slice(1, holder.length - 1)
+  
+  return isPalindrome(palin)
+  
+  }
+  
+  return false
+  }
+  
+  console.log(isPalindrome("acecar"))
+  console.log(isPalindrome("Racecar"))
+
+
+The definition of recursion is calling a function within. So searching recursion, calls the function to set Did you mean - to recursion, which when clicked on calls itself again.
