@@ -1,0 +1,50 @@
+1. Write pseudocode for bubble sort.
+
+FUNCTION bubbleSort(collection)
+   REPEAT
+     SET swapped to false
+
+     FOR i = FIRST INDEX of collection to LAST INDEX of collection - 1
+       IF collection[i] > collection[i + 1] THEN
+         SET tmp to collection[i]
+         SET collection[i] to collection[i + 1]
+         SET collection[i + 1] to tmp
+         SET swapped to true
+       END IF
+     END FOR
+    UNTIL swapped is FALSE
+
+   RETURN collection
+ END FUNCTION
+
+2. Write pseudocode for quicksort.
+FUNCTION quickSort(collection)
+    IF collection length <=1
+        RETURN collection
+    ELSE
+        SET left, right to empty arrays
+        SET pivot to last item in collection
+        SET length to length of collection
+
+        FOR i = 0 to length -1
+            IF collection[i] <= pivot
+                PUSH collection[i] to last index of left
+            ELSE
+                PUSH collection[i] to last index of right
+            END IF
+        END FOR
+        RETURN quickSort(left).concat(pivot, quickSort(right));
+    END IF
+END FUNCTION
+
+3. We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
+
+
+-In quick sort you are only looping through the full array once then using divide and conquer to sort through the remaining data. 
+
+-Merge sort uses similar divide and conquer process. The algorithm doesn't need to iterate through the whole collection multiple times because items are sorted in smaller groupings before sorted in the entire collection.
+
+
+4. All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it works. What is the ideal input for bucket sort?
+
+Bucket sort, is a sorting algorithm that works by distributing the elements of a collection into a number of "buckets". Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm. The sorted buckets are then combined to form the sorted collection. Bucket sort’s best case occurs when the data being sorted can be distributed between the buckets perfectly.
